@@ -1,4 +1,5 @@
-  // Your web app's Firebase configuration
+import firebase from "firebase/app";
+ // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyBjeQ6IkYEtlIvTjQu9BDW3SOb4pAmQu24",
     authDomain: "genr8-3d-money-tracking.firebaseapp.com",
