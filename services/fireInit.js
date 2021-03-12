@@ -1,5 +1,6 @@
-import firebase from 'firebase/app';
-import 'firebase/firestore';
+const firebase = require("firebase");
+// Required for side-effects
+require("firebase/firebase-firestore");
  // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyBjeQ6IkYEtlIvTjQu9BDW3SOb4pAmQu24",
@@ -12,4 +13,4 @@ import 'firebase/firestore';
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
-  const db = firebase.firestore();
+  var db = firebase.firestore();
