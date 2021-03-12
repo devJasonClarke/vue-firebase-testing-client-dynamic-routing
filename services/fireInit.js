@@ -10,3 +10,5 @@ import firebase from "firebase/app";
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+
+  var db = firebase.firestore();
