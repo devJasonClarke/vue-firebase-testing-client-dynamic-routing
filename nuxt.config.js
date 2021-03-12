@@ -12,13 +12,7 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
-  generate: {
-    async routes() {
-    let db = firebase.firestore();
-      const qs = await db.collection('clients').get();
-      return qs.docs.map(x => `/client/${x.id}`);
-    }
-  },
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Genr8-money-tracking',
@@ -71,7 +65,13 @@ export default {
       }
     ]
   ],
-
+  generate: {
+    async routes() {
+    let db = this.$fire.firestore();
+      const qs = await db.collection('clients').get();
+      return qs.docs.map(x => `/client/${x.id}`);
+    }
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }
