@@ -10,7 +10,7 @@ export default {
   data() {
     return {
       getClient: this.$route.params.id,
-      info: null,
+      info: {},
     };
   },
   methods: {

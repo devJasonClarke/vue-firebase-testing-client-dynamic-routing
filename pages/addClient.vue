@@ -161,7 +161,7 @@ export default {
             console.error("Error adding document: ", error);
           });
 
-/* this.$router.push("/") */
+this.$router.push("/")
       }
     }
   }
