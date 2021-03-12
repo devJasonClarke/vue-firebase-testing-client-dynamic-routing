@@ -1,13 +1,3 @@
-const firebase = require("firebase");
-// Required for side-effects
-require("firebase/firestore");
-firebase.initializeApp({
-  apiKey: "AIzaSyBjeQ6IkYEtlIvTjQu9BDW3SOb4pAmQu24",
-  authDomain: "genr8-3d-money-tracking.firebaseapp.com",
-  projectId: "genr8-3d-money-tracking",
-});
-
-
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
