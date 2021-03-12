@@ -1,5 +1,5 @@
 import firebase from "firebase/app";
-require("firebase/firestore");
+require("firebase/firebase-firestore");
 
  // Your web app's Firebase configuration
   var firebaseConfig = {
@@ -8,7 +8,7 @@ require("firebase/firestore");
     projectId: "genr8-3d-money-tracking",
     storageBucket: "genr8-3d-money-tracking.appspot.com",
     messagingSenderId: "430711737245",
-    appId: "1:430711737245:web:b916a77ccd918d377a7d74"
+    appId: "1:430711737245:web:b8270f6fee41974b7a7d74"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
