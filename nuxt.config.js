@@ -1,27 +1,10 @@
-import firebase from "firebase/app";
-require("firebase/firebase-firestore");
-
- // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyBjeQ6IkYEtlIvTjQu9BDW3SOb4pAmQu24",
-    authDomain: "genr8-3d-money-tracking.firebaseapp.com",
-    projectId: "genr8-3d-money-tracking",
-    storageBucket: "genr8-3d-money-tracking.appspot.com",
-    messagingSenderId: "430711737245",
-    appId: "1:430711737245:web:b8270f6fee41974b7a7d74"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-
-  const db = firebase.firestore();
-
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
   generate: {
     async routes() {
-    
+    let db = firebase.firestore();
       const qs = await db.collection('clients').get();
       return qs.docs.map(x => `/clients/${x.id}`);
     }
