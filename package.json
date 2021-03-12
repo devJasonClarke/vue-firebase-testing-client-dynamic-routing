@@ -9,8 +9,14 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxtjs/firebase": "^7.5.0",
     "core-js": "^3.8.3",
+    "firebase": "^8.3.0",
     "nuxt": "^2.14.12"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "fibers": "^5.0.0",
+    "sass": "^1.32.8",
+    "sass-loader": "^10.1.1"
+  }
 }

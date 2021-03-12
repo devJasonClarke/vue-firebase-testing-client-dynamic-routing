@@ -2,6 +2,13 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
+  generate: {
+    async routes() {
+    const db = this.$fire.firestore;
+      const qs = await db.collection('clients').get();
+      return qs.docs.map(x => `/clients/${x.id}`);
+    }
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Genr8-money-tracking',
@@ -20,6 +27,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    "~/assets/scss/index.scss"
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -35,6 +43,23 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    [
+      '@nuxtjs/firebase',
+      {
+        config: {
+          apiKey: "AIzaSyBjeQ6IkYEtlIvTjQu9BDW3SOb4pAmQu24",
+          authDomain: "genr8-3d-money-tracking.firebaseapp.com",
+          projectId: "genr8-3d-money-tracking",
+          storageBucket: "genr8-3d-money-tracking.appspot.com",
+          messagingSenderId: "430711737245",
+          appId: "1:430711737245:web:b916a77ccd918d377a7d74"
+         },
+        services: {
+          auth: true,
+          firestore: true
+        }
+      }
+    ]
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
