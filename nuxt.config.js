@@ -1,3 +1,7 @@
+const firebase = require("firebase");
+// Required for side-effects
+require("firebase/firestore");
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -6,7 +10,7 @@ export default {
     async routes() {
     let db = firebase.firestore();
       const qs = await db.collection('clients').get();
-      return qs.docs.map(x => `/clients/${x.id}`);
+      return qs.docs.map(x => `/client/${x.id}`);
     }
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
