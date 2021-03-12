@@ -4,7 +4,7 @@ export default {
 
   generate: {
     async routes() {
-    const db = this.$fire.firestore;
+    const { db } = require('./services/fireInit');;
       const qs = await db.collection('clients').get();
       return qs.docs.map(x => `/clients/${x.id}`);
     }
