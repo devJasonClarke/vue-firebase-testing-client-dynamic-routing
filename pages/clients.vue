@@ -1,12 +1,16 @@
 <template>
   <div>
     <div class="container">
-      <h1>Clients</h1>
+      <h1>Clients {{ age }}</h1>
       <div class="client-container">
-        <div v-for="(client, index) in clients" class="client-card" :key="index">
-          <p>Client: {{client[0].client_name}}</p>
-          <p>Last Update: {{client[0].last_update}}</p>
-          <p>hosting: ${{client[0].hosting_fee}}</p>
+        <div
+          v-for="(client, index) in clients"
+          class="client-card"
+          :key="index"
+        >
+          <p>Client: {{ client[0].client_name }}</p>
+          <p>Last Update: {{ client[0].last_update }}</p>
+          <p>hosting: ${{ client[0].hosting_fee }}</p>
           <button @click="viewClient(client[1])">See more</button>
         </div>
       </div>
@@ -15,44 +19,34 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
-    data() {
-        return {
-            clients: []
-        }
-    },
+  data() {
+    return {};
+  },
   methods: {
-    async readFromFirestore() {
-      const db = this.$fire.firestore;
-      await db
-        .collection("clients")
-        .orderBy("timestamp")
-        .onSnapshot(querySnapshot => {
-          let clientList = [];
-          querySnapshot.forEach(doc => {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
-            clientList.push([doc.data(),doc.id]);
-          });
-          this.clients = clientList;
-          console.log(this.clients)
-        });
-    },
-    viewClient(id){
-this.$router.push({name: 'client-id',  params: { id: id }})
+    ...mapActions({ getClient: "users/addClient" }),
+    viewClient(id) {
+      this.$router.push({ name: "client-id", params: { id: id } });
     }
   },
-  
-  mounted() {
-    this.readFromFirestore();
+
+  computed: {
+    ...mapGetters({
+      clients: "users/clients",
+      age: "users/age"
+    })
+  },
+  mounted () {
+       this.getClient();
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.container{
-    max-width: 1100px;
-    margin: 0 auto;
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
 }
 .client-container {
   display: grid;
@@ -64,7 +58,7 @@ this.$router.push({name: 'client-id',  params: { id: id }})
   border: 1px solid black;
   padding: 15px;
 }
-button{
-    margin-top: 20px;
+button {
+  margin-top: 20px;
 }
 </style>
