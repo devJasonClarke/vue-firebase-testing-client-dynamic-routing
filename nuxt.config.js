@@ -1,7 +1,25 @@
 export default {
+  async asyncData({app, params, error, route}) {
+         let theParam = String(route.params.id);
+         console.log(theParam)
+         const messageRef = app.$fire.firestore.collection("clients");
+    
+         let messageDoc;
+      
+          try {
+            messageDoc = await messageRef.get()
+             console.log(messageRef)
+    
+          } catch (e) {
+           console.log(e)
+         
+          } return{
+            info: messageDoc
+          }
+    },
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
-  mode: 'spa',
+
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -60,7 +78,9 @@ export default {
     ]
   ],
 
-
+  generate: {
+    routes: info
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
