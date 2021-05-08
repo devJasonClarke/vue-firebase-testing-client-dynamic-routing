@@ -59,9 +59,30 @@ export default {
       
     ]
   ],
+
+  hooks: {
+    generate: {
+      async done(builder) {
+        const appModule = await import('./.nuxt/firebase/app.js')
+        const { session } = await appModule.default(
+          builder.options.firebase.config,
+          {
+            res: null,
+          }
+        )
+        try {
+          session.database().goOffline()
+        } catch (e) { }
+        try {
+          session.firestore().terminate()
+        } catch (e) { }
+      },
+    },
+  },
+  
   generate: {
     async routes() {
-    let db = this.$fire.firestore();
+    let db = $fire.firestore();
       const qs = await db.collection('clients').get();
       return qs.docs.map(x => `/client/${x.id}`);
     }
