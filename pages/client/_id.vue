@@ -24,7 +24,7 @@ export default {
 
 
      let messageDoc; */
-     let theParam = route.params.id;
+     let theParam = String(route.params.id);
      console.log(theParam)
        const messageRef = app.$fire.firestore.collection("clients").doc(`${theParam}`);
 
