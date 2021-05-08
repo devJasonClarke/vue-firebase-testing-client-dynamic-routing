@@ -13,7 +13,7 @@ export default {
      const messageDoc = null;
        const messageRef = app.$fire.firestore
         .collection("clients")
-        .doc(route.params.id);
+        .doc(`${route.params.id}`);
       try {
          messageDoc = await messageRef.get();
      
