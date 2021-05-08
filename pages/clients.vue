@@ -14,7 +14,9 @@
           <button @click="viewClient(client[1])">See more</button>
         </div>
       </div>
+  
     </div>
+        {{clients}}
   </div>
 </template>
 
@@ -28,7 +30,25 @@ export default {
     ...mapActions({ getClient: "users/addClient" }),
     viewClient(id) {
       this.$router.push({ name: "client-id", params: { id: id } });
-    }
+    },
+  async addClient() {
+    const db = this.$fire.firestore;
+    let clientList = [];
+    await db
+      .collection("clients")
+      .orderBy("timestamp")
+      .onSnapshot(querySnapshot => {
+     clientList = []
+        querySnapshot.forEach(doc => {
+          // doc.data() is never undefined for query doc snapshots
+      
+          clientList.push([doc.data(), doc.id]);
+        });
+        this.getClient(clientList)
+    
+      });
+
+  }
   },
 
   computed: {
@@ -38,7 +58,7 @@ export default {
     })
   },
   mounted () {
-       this.getClient();
+       this.addClient();
   }
 };
 </script>

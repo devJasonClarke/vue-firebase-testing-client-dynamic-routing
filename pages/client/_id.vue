@@ -1,26 +1,41 @@
 <template>
   <div>
     <h1>THe Client</h1>
-    <h2>{{ info.client_name}}</h2>
+    <h2>{{ info}}</h2>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
       getClient: this.$route.params.id,
-      info: {},
+      info: [],
     };
   },
+       computed: {
+    ...mapGetters({
+      theClient: "users/clients",
+      age: "users/age"
+    })
+  },
   methods: {
+
+  cliient(){
+    return this.theClient.find(client => client === this.getClient)
+  },
+  setInfo(){
+    this.client();
+    /* this.info = this.theClient; */
+  },
     async client() {
       const messageRef = this.$fire.firestore
         .collection("clients")
         .doc(this.getClient);
       try {
         const messageDoc = await messageRef.get();
-        this.info = messageDoc.data();
+       return this.info = messageDoc.data();
 
       } catch (e) {
         alert(e);
@@ -33,7 +48,7 @@ export default {
     }
   },
   created() {
-    this.client();
+    this.setInfo();
   } /* ,
         computed: {
            async client() {
