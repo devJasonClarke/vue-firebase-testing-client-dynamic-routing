@@ -32,8 +32,8 @@ export default {
   ],
   generate: {
     async routes() {
-      const { db } = require('@nuxtjs/firebase'); //or wherever your firebase plugin is being exported from
-      const qs = await db.firestore().collection('clients').get();
+      const { db } = require('@firebase/app'); //or wherever your firebase plugin is being exported from
+      const qs = await this.$fire.firestore.collection('clients').get();
       return qs.docs.map(x => `/clients/${x.id}`);
     }
   },
