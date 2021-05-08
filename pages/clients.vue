@@ -12,6 +12,7 @@
           <p>Last Update: {{ client[0].last_update }}</p>
           <p>hosting: ${{ client[0].hosting_fee }}</p>
           <button @click="viewClient(client[1])">See more</button>
+          <nuxt-link :to="{ name: 'client-id', params: { id: client[1] }}">User</nuxt-link>
         </div>
       </div>
   

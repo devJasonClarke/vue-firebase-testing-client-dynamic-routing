@@ -30,7 +30,12 @@ export default {
 
   },
 head() {
-      return { title: this.info.client_name }
+      return { title: this.info.client_name,
+       meta: [{
+        hid: 'description',
+        name: 'description',
+        content: this.info.client_name
+      }] }
 },
   data() {
     return {
