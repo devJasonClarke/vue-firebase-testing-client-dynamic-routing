@@ -23,6 +23,9 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 export default {
+  head:{
+    title: 'The Client', 
+  },
   data() {
     return {};
   },

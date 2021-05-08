@@ -6,68 +6,46 @@
 </template>
 
 <script>
-
 export default {
+  async asyncData({ app, params, error }) {
 
-  async asyncData({app, params, error, route}) {
-/*  const ref = fireDb.collection("test").doc("test")
-      let snap
-      try {
-        snap = await ref.get()
-      } catch (e) {
-        // TODO: error handling
-        console.error(e)
-      }
-      return {
-        text: snap.data().text
-      }
+    let theParam = String(params.id);
+    console.log(theParam);
+    const messageRef = app.$fire.firestore
+      .collection("clients")
+      .doc(`${theParam}`);
 
+    let messageDoc;
 
-     let messageDoc; */
-     let theParam = String(route.params.id);
-     console.log(theParam)
-     const messageRef = app.$fire.firestore.collection("clients").doc(`${theParam}`);
-
-     let messageDoc;
-  
-      try {
-        messageDoc = await messageRef.get()
-         console.log(messageRef)
-
-      } catch (e) {
-       console.log(e)
+    try {
+      messageDoc = await messageRef.get();
+      console.log(messageRef);
+    } catch (e) {
+      console.log(e);
+    }
+    return {
+      info: messageDoc.data()
      
-      } return{
-        info: messageDoc.data()
-      }
+    };
 
-/*   const ref = fireDb.collection("test").doc("test")
-  let snap
-  try {
-    snap = await ref.get()
-  } catch (e) {
-    // TODO: error handling
-    console.error(e)
-  }
-  return {
-    text: snap.data().text
-  } */
+  },
+head() {
+      return { title: this.info.client_name }
 },
   data() {
     return {
-      getClient: this.$route.params.id,
-
+      getClient: this.$route.params.id
     };
   },
 
   methods: {
-  cliient(){
-    return this.theClient.find(client => client === this.getClient)
-  },
-  /* setInfo(){
-    this.client();
+    cliient() {
+      return this.theClient.find(client => client === this.getClient);
+    },
+    setInfo(){
+   console.log(this.info)
    
-  },
+  }, /*
     async client() {
       const messageRef = this.$fire.firestore
         .collection("clients")
@@ -87,7 +65,7 @@ export default {
     }
   },
   created() {
-/*     this.setInfo(); */
+   this.setInfo();
   } /* ,
         computed: {
            async client() {
