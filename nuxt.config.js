@@ -7,14 +7,14 @@ export default {
          let messageDoc;
       
           try {
-            messageDoc = await messageRef.get()
+            messageDoc = await messageRef.get();
              console.log(messageRef)
     
           } catch (e) {
            console.log(e)
          
           } return{
-            info: messageDoc
+           messageDoc
           }
     },
   // Target: https://go.nuxtjs.dev/config-target
@@ -79,7 +79,7 @@ export default {
   ],
 
   generate: {
-    routes: info
+    routes: messageDoc
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
