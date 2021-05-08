@@ -8,10 +8,39 @@
 <script>
 
 export default {
+
+  async asyncData({app, params, erro, route}) {
+     const messageDoc = null;
+       const messageRef = app.$fire.firestore
+        .collection("clients")
+        .doc(route.params.id);
+      try {
+         messageDoc = await messageRef.get();
+     
+
+      } catch (e) {
+       
+     
+      } return{
+        info: messageDoc
+      }
+
+/*   const ref = fireDb.collection("test").doc("test")
+  let snap
+  try {
+    snap = await ref.get()
+  } catch (e) {
+    // TODO: error handling
+    console.error(e)
+  }
+  return {
+    text: snap.data().text
+  } */
+},
   data() {
     return {
       getClient: this.$route.params.id,
-      info: [],
+
     };
   },
 
