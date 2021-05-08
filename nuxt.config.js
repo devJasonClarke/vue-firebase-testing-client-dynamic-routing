@@ -1,25 +1,7 @@
-let messageDoc;
+
 
 export default {
 
-  async asyncData({app, params, error, route}) {
-         let theParam = String(route.params.id);
-         console.log(theParam)
-         const messageRef = app.$fire.firestore.collection("clients");
-    
- 
-      
-          try {
-            messageDoc = await messageRef.get();
-             console.log(messageRef)
-    
-          } catch (e) {
-           console.log(e)
-         
-          } return{
-           messageDoc
-          }
-    },
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
@@ -48,6 +30,13 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
   ],
+  generate: {
+    async routes() {
+      const { db } = require('./.nuxt/firebase/app.js'); //or wherever your firebase plugin is being exported from
+      const qs = await db.collection('clients').get();
+      return qs.docs.map(x => `/clients/${x.id}`);
+    }
+  },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -80,10 +69,6 @@ export default {
       
     ]
   ],
-
-  generate: {
-    routes: messageDoc
-  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
