@@ -1,10 +1,13 @@
+let messageDoc;
+
 export default {
+
   async asyncData({app, params, error, route}) {
          let theParam = String(route.params.id);
          console.log(theParam)
          const messageRef = app.$fire.firestore.collection("clients");
     
-         let messageDoc;
+ 
       
           try {
             messageDoc = await messageRef.get();
