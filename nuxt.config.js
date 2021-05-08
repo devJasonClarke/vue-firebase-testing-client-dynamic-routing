@@ -4,7 +4,7 @@ export default {
 
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
-
+mode: 'spa',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -30,13 +30,13 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
   ],
-  generate: {
+/*   generate: {
     async routes() {
       const { db } = require('@firebase/app'); //or wherever your firebase plugin is being exported from
-      const qs = await this.$fire.firestore.collection('clients').get();
+      const qs = await db.firestore.collection('clients').get();
       return qs.docs.map(x => `/clients/${x.id}`);
     }
-  },
+  }, */
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
