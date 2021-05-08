@@ -52,13 +52,11 @@ export default {
           auth: true,
             // ...
             firestore: {
-              enablePersistence: {
-                synchronizeTabs: true
-              }
-            
+              memoryOnly: false
+            },
           }
         }
-      }
+      
     ]
   ],
   generate: {

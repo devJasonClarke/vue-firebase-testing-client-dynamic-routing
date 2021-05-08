@@ -10,19 +10,35 @@
 export default {
 
   async asyncData({app, params, error, route}) {
-     const messageDoc = null;
-       const messageRef = app.$fire.firestore
-        .collection("clients")
-        .doc(`${route.params.id}`);
+/*  const ref = fireDb.collection("test").doc("test")
+      let snap
       try {
-         messageDoc = await messageRef.get();
-     
+        snap = await ref.get()
+      } catch (e) {
+        // TODO: error handling
+        console.error(e)
+      }
+      return {
+        text: snap.data().text
+      }
+
+
+     let messageDoc; */
+     let theParam = route.params.id;
+     console.log(theParam)
+       const messageRef = app.$fire.firestore.collection("clients").doc(`${theParam}`);
+
+     let messageDoc;
+  
+      try {
+        messageDoc = await messageRef.get()
+         console.log(messageRef)
 
       } catch (e) {
-       
+       console.log(e)
      
       } return{
-        info: messageDoc
+        info: messageDoc.data()
       }
 
 /*   const ref = fireDb.collection("test").doc("test")
@@ -48,9 +64,9 @@ export default {
   cliient(){
     return this.theClient.find(client => client === this.getClient)
   },
-  setInfo(){
+  /* setInfo(){
     this.client();
-    /* this.info = this.theClient; */
+   
   },
     async client() {
       const messageRef = this.$fire.firestore
@@ -64,14 +80,14 @@ export default {
         alert(e);
         return;
       }
-    },
+    }, */
 
     loadClient() {
       this.info == "";
     }
   },
   created() {
-    this.setInfo();
+/*     this.setInfo(); */
   } /* ,
         computed: {
            async client() {
