@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+
 export default {
   data() {
     return {
@@ -14,14 +14,8 @@ export default {
       info: [],
     };
   },
-       computed: {
-    ...mapGetters({
-      theClient: "users/clients",
-      age: "users/age"
-    })
-  },
-  methods: {
 
+  methods: {
   cliient(){
     return this.theClient.find(client => client === this.getClient)
   },
