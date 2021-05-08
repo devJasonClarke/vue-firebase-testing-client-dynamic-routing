@@ -1,7 +1,7 @@
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
-
+  mode: 'spa',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -60,33 +60,8 @@ export default {
     ]
   ],
 
-  hooks: {
-    generate: {
-      async done(builder) {
-        const appModule = await import('./.nuxt/firebase/app.js')
-        const { session } = await appModule.default(
-          builder.options.firebase.config,
-          {
-            res: null,
-          }
-        )
-        try {
-          session.database().goOffline()
-        } catch (e) { }
-        try {
-          session.firestore().terminate()
-        } catch (e) { }
-      },
-    },
-  },
-  
-  generate: {
-    async routes() {
-    let db = $fire.firestore();
-      const qs = await db.collection('clients').get();
-      return qs.docs.map(x => `/client/${x.id}`);
-    }
-  },
+
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     build: {
