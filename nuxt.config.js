@@ -50,7 +50,13 @@ export default {
          },
         services: {
           auth: true,
-          firestore: true
+            // ...
+            firestore: {
+              enablePersistence: {
+                synchronizeTabs: true
+              }
+            
+          }
         }
       }
     ]
@@ -64,5 +70,17 @@ export default {
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    build: {
+      extend(config, { isServer }) {
+        if (isServer) {
+          config.externals = {
+            '@firebase/app': 'commonjs @firebase/app',
+            '@firebase/auth': 'commonjs @firebase/auth',
+            '@firebase/firestore': 'commonjs @firebase/firestore',
+            // ...
+          }
+        }
+      }
+    }
   }
 }

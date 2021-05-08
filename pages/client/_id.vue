@@ -9,7 +9,7 @@
 
 export default {
 
-  async asyncData({app, params, erro, route}) {
+  async asyncData({app, params, error, route}) {
      const messageDoc = null;
        const messageRef = app.$fire.firestore
         .collection("clients")
