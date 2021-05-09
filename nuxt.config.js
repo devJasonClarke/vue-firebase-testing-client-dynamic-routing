@@ -30,6 +30,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+'~/plugins/preview.client.js', 
+'~/plugins/validate.client.js', 
   ],
    generate: {
       routes: ['/','/clients','/addClient','/404'/* ,'/client/JPWB1V89cgBskNgqTBy5' */],
