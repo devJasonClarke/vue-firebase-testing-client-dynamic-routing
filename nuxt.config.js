@@ -32,8 +32,8 @@ export default {
   plugins: [
   ],
    generate: {
-      routes: ['/','/clients','/addClient','/client/JPWB1V89cgBskNgqTBy5'],
-      exclude: ['/client/']
+      routes: ['/','/clients','/addClient'/* ,'/client/JPWB1V89cgBskNgqTBy5' */],
+      exclude: ['/client']
 
   }, 
 
