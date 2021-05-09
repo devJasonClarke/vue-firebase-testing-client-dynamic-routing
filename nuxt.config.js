@@ -34,9 +34,8 @@ export default {
 '~/plugins/validate.client.js', 
   ],
    generate: {
-      routes: ['/','/clients','/addClient','/404'/* ,'/client/JPWB1V89cgBskNgqTBy5' */],
       exclude: [  /^\/client/ ],
-      fallback: '404.html'
+      fallback: true,
 
   }, 
 
