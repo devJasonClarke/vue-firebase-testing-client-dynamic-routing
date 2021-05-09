@@ -32,8 +32,9 @@ export default {
   plugins: [
   ],
    generate: {
-      routes: ['/','/clients','/addClient'/* ,'/client/JPWB1V89cgBskNgqTBy5' */],
-      exclude: [  /^\/client/ ]
+      routes: ['/','/clients','/addClient','/404'/* ,'/client/JPWB1V89cgBskNgqTBy5' */],
+      exclude: [  /^\/client/ ],
+      fallback: '404.html'
 
   }, 
 
