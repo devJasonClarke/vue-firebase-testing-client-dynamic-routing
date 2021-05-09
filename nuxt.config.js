@@ -4,6 +4,7 @@ export default {
 
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
+  ssr: false,
 
 
 
@@ -30,14 +31,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-'~/plugins/preview.client.js', 
-'~/plugins/validate.client.js', 
-  ],
-   generate: {
-      exclude: [  /^\/client/ ],
-      fallback: true,
 
-  }, 
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
