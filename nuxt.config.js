@@ -33,7 +33,7 @@ export default {
   ],
    generate: {
       routes: ['/','/clients','/addClient'/* ,'/client/JPWB1V89cgBskNgqTBy5' */],
-      exclude: ['/client']
+      exclude: [  /^\/client/ ]
 
   }, 
 
